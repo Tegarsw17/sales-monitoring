@@ -22,6 +22,7 @@
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "font-awesome": "^4.7.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "random-words": "^1.2.1"
   }
 }
