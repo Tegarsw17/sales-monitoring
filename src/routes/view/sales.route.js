@@ -20,4 +20,10 @@ router.get("/catalog/:id", function (req, res) {
   });
 });
 
+router.get("/form", function (req, res) {
+  res.render("sales/form", {
+    title: "Report Form",
+  });
+});
+
 module.exports = router;
