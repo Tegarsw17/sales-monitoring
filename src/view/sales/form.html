@@ -58,13 +58,13 @@
     const success = (position) => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-      addtext.textContent = "Lokasi Sudah Ditemukan";
+      addtext.textContent = `latitude:${latitude} longitude:${longitude}`;
       const getApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
 
-      //   fetch(getApi)
-      //     .then((response) => response.json())
-      //     .then((data) => console.log(data))
-      //     .then((addtext.textContent = "lokasi sudah ditemukan"));
+      fetch(getApi)
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+      //   .then((addtext.textContent = "lokasi sudah ditemukan"));
     };
     const err = (err) => {
       addtext.textContent = err.message;
