@@ -16,7 +16,14 @@ router.get("/catalog", function (req, res) {
 router.get("/catalog/:id", function (req, res) {
   res.render("sales/detail", {
     title: "Detail",
-    param: req.params.id
+    param: req.params.id,
+  });
+});
+
+router.get("/cart/:id", function (req, res) {
+  res.render("sales/cart", {
+    title: "Cart",
+    param: req.params.id,
   });
 });
 
