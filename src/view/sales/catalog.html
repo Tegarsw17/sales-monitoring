@@ -1,168 +1,118 @@
 <%- include('./templates/header.html') -%>
 
-<div class="z-50 sticky top-0 flex flex-col">
-  <nav
-    class="w-screen h-15 p-2 bg-[#fBfBfB] text-2xl flex justify-between items-center"
-  >
-    <i class="fa-solid fa-angle-left"></i>
-    <p><%= title %></p>
-    <i class="fa fa-arrow-left invisible"></i>
-  </nav>
-  <form class="flex justify-center items-center bg-[#fBfBfB]" action="/sales">
-    <input
-      class="p-2.5 my-3 w-80 rounded-full bg-[#f4f4f4]"
-      type="text"
-      id="search"
-      name="search"
-      placeholder="Search"
-    />
-  </form>
-</div>
-<div class="grid grid-cols-2 gap-2 place-items-center mx-2 mb-20">
-  <a href="/sales/catalog/fruit">
-    <div class="card" style="width: 150px">
-      <img
-        src="https://source.unsplash.com/random/150x150/?fruit"
-        class="card-img-top"
-        alt="/"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Cat Warna</h5>
-        <p class="card-text">Rp 250.000</p>
+  <div class="z-50 sticky top-0 flex flex-col">
+    <nav class="w-screen h-15 p-2 bg-[#fBfBfB] text-2xl flex justify-between items-center">
+      <i class="fa-solid fa-angle-left"></i>
+      <p>
+        <%= title %>
+      </p>
+      <i class="fa fa-arrow-left invisible"></i>
+    </nav>
+    <form class="flex justify-center items-center bg-[#fBfBfB]" action="/sales">
+      <input class="p-2.5 my-3 w-80 rounded-full bg-[#f4f4f4]" type="text" id="search" name="search"
+        placeholder="Search" />
+    </form>
+  </div>
+  <div class="grid grid-cols-2 gap-2 place-items-center mx-2 mb-20">
+    <a href="/sales/catalog/fruit">
+      <div class="card" style="width: 150px">
+        <img src="https://source.unsplash.com/random/150x150/?fruit" class="card-img-top" alt="/" />
+        <div class="card-body">
+          <h5 class="card-title">Cat Warna</h5>
+          <p class="card-text">Rp 250.000</p>
+        </div>
       </div>
-    </div>
-  </a>
-  <a href="/sales/catalog/city">
-    <div class="card" style="width: 150px">
-      <img
-        src="https://source.unsplash.com/random/150x150/?city"
-        class="card-img-top"
-        alt="/"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Kuas</h5>
-        <p class="card-text">Rp 50.000</p>
+    </a>
+    <a href="/sales/catalog/city">
+      <div class="card" style="width: 150px">
+        <img src="https://source.unsplash.com/random/150x150/?city" class="card-img-top" alt="/" />
+        <div class="card-body">
+          <h5 class="card-title">Kuas</h5>
+          <p class="card-text">Rp 50.000</p>
+        </div>
       </div>
-    </div>
-  </a>
-  <a href="/sales/catalog/sea">
-    <div class="card" style="width: 150px">
-      <img
-        src="https://source.unsplash.com/random/150x150/?sea"
-        class="card-img-top"
-        alt="/"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Cat Warna</h5>
-        <p class="card-text">Rp 250.000</p>
+    </a>
+    <a href="/sales/catalog/sea">
+      <div class="card" style="width: 150px">
+        <img src="https://source.unsplash.com/random/150x150/?sea" class="card-img-top" alt="/" />
+        <div class="card-body">
+          <h5 class="card-title">Cat Warna</h5>
+          <p class="card-text">Rp 250.000</p>
+        </div>
       </div>
-    </div>
-  </a>
-  <a href="/sales/catalog/mountain">
-    <div class="card" style="width: 150px">
-      <img
-        src="https://source.unsplash.com/random/150x150/?mountain"
-        class="card-img-top"
-        alt="/"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Kuas</h5>
-        <p class="card-text">Rp 50.000</p>
+    </a>
+    <a href="/sales/catalog/mountain">
+      <div class="card" style="width: 150px">
+        <img src="https://source.unsplash.com/random/150x150/?mountain" class="card-img-top" alt="/" />
+        <div class="card-body">
+          <h5 class="card-title">Kuas</h5>
+          <p class="card-text">Rp 50.000</p>
+        </div>
       </div>
-    </div>
-  </a>
-  <a href="/sales/catalog/bird">
-    <div class="card" style="width: 150px">
-      <img
-        src="https://source.unsplash.com/random/150x150/?bird"
-        class="card-img-top"
-        alt="/"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Cat Warna</h5>
-        <p class="card-text">Rp 250.000</p>
+    </a>
+    <a href="/sales/catalog/bird">
+      <div class="card" style="width: 150px">
+        <img src="https://source.unsplash.com/random/150x150/?bird" class="card-img-top" alt="/" />
+        <div class="card-body">
+          <h5 class="card-title">Cat Warna</h5>
+          <p class="card-text">Rp 250.000</p>
+        </div>
       </div>
-    </div>
-  </a>
-  <a href="/sales/catalog/book">
-    <div class="card" style="width: 150px">
-      <img
-        src="https://source.unsplash.com/random/150x150/?book"
-        class="card-img-top"
-        alt="/"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Kuas</h5>
-        <p class="card-text">Rp 50.000</p>
+    </a>
+    <a href="/sales/catalog/book">
+      <div class="card" style="width: 150px">
+        <img src="https://source.unsplash.com/random/150x150/?book" class="card-img-top" alt="/" />
+        <div class="card-body">
+          <h5 class="card-title">Kuas</h5>
+          <p class="card-text">Rp 50.000</p>
+        </div>
       </div>
-    </div>
-  </a>
-  <a href="/sales/catalog/gun">
-    <div class="card" style="width: 150px">
-      <img
-        src="https://source.unsplash.com/random/150x150/?gun"
-        class="card-img-top"
-        alt="/"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Kuas</h5>
-        <p class="card-text">Rp 50.000</p>
+    </a>
+    <a href="/sales/catalog/gun">
+      <div class="card" style="width: 150px">
+        <img src="https://source.unsplash.com/random/150x150/?gun" class="card-img-top" alt="/" />
+        <div class="card-body">
+          <h5 class="card-title">Kuas</h5>
+          <p class="card-text">Rp 50.000</p>
+        </div>
       </div>
-    </div>
-  </a>
-  <a href="/sales/catalog/flower">
-    <div class="card" style="width: 150px">
-      <img
-        src="https://source.unsplash.com/random/150x150/?flower"
-        class="card-img-top"
-        alt="/"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Kuas</h5>
-        <p class="card-text">Rp 50.000</p>
+    </a>
+    <a href="/sales/catalog/flower">
+      <div class="card" style="width: 150px">
+        <img src="https://source.unsplash.com/random/150x150/?flower" class="card-img-top" alt="/" />
+        <div class="card-body">
+          <h5 class="card-title">Kuas</h5>
+          <p class="card-text">Rp 50.000</p>
+        </div>
       </div>
-    </div>
-  </a>
-  <a href="/sales/catalog/laptop">
-    <div class="card" style="width: 150px">
-      <img
-        src="https://source.unsplash.com/random/150x150/?laptop"
-        class="card-img-top"
-        alt="/"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Kuas</h5>
-        <p class="card-text">Rp 50.000</p>
+    </a>
+    <a href="/sales/catalog/laptop">
+      <div class="card" style="width: 150px">
+        <img src="https://source.unsplash.com/random/150x150/?laptop" class="card-img-top" alt="/" />
+        <div class="card-body">
+          <h5 class="card-title">Kuas</h5>
+          <p class="card-text">Rp 50.000</p>
+        </div>
       </div>
-    </div>
-  </a>
-  <a href="/sales/catalog/card">
-    <div class="card" style="width: 150px">
-      <img
-        src="https://source.unsplash.com/random/150x150/?card"
-        class="card-img-top"
-        alt="/"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Kuas</h5>
-        <p class="card-text">Rp 50.000</p>
+    </a>
+    <a href="/sales/catalog/card">
+      <div class="card" style="width: 150px">
+        <img src="https://source.unsplash.com/random/150x150/?card" class="card-img-top" alt="/" />
+        <div class="card-body">
+          <h5 class="card-title">Kuas</h5>
+          <p class="card-text">Rp 50.000</p>
+        </div>
       </div>
-    </div>
-  </a>
-  <!-- <img src="https://source.unsplash.com/random/150x150/?fruit" alt="" />
-  <img src="https://source.unsplash.com/random/150x150/?city" alt="" />
-  <img src="https://source.unsplash.com/random/150x150/?sea" alt="" />
-  <img src="https://source.unsplash.com/random/150x150/?mountain" alt="" /> -->
-</div>
-<div>
-  <footer
-    class="fixed z-50 h-14 w-screen bottom-0 bg-slate-200 text-2xl flex justify-around items-center rounded-t-lg"
-  >
-    <a href="/sales/catalog"><i class="fa-solid fa-book"></i></a>
-    <a href="/sales"><i class="fa-solid fa-chart-simple"></i></a>
-    <a href="/sales/form"><i class="fa-solid fa-pen-to-square"></i></a>
-  </footer>
-</div>
-<!-- <a href="/sales">Back to Login</a> -->
+    </a>
+  </div>
+  <div>
+    <footer
+      class="fixed z-50 h-14 w-screen bottom-0 bg-slate-200 text-2xl flex justify-around items-center rounded-t-lg">
+      <a href="/sales/catalog"><i class="fa-solid fa-book"></i></a>
+      <a href="/sales/report"><i class="fa-solid fa-chart-simple"></i></a>
+      <a href="/sales/form"><i class="fa-solid fa-pen-to-square"></i></a>
+    </footer>
+  </div>
+  <!-- <a href="/sales">Back to Login</a> -->
 
-<%- include('./templates/footer.html') -%>
+  <%- include('./templates/footer.html') -%>

@@ -20,7 +20,7 @@ router.get("/catalog/:id", function (req, res) {
   });
 });
 
-router.get("/cart/:id", function (req, res) {
+router.get("/cart/", function (req, res) {
   res.render("sales/cart", {
     title: "Cart",
     param: req.params.id,
@@ -30,6 +30,19 @@ router.get("/cart/:id", function (req, res) {
 router.get("/form", function (req, res) {
   res.render("sales/form", {
     title: "Report Form",
+  });
+});
+
+router.get("/report", function (req, res) {
+  res.render("sales/report", {
+    title: "Report",
+  });
+});
+
+router.get("/report/:id", function (req, res) {
+  res.render("sales/reportDetail", {
+    title: "Report",
+    param: req.params.id,
   });
 });
 
