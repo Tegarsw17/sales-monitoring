@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-     await queryInterface.createTable('items', { 
+     await queryInterface.createTable('tracks', { 
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -18,25 +18,20 @@ module.exports = {
           as: "user_id"
         }
       },
-      name_item: {
+      lock_latitude: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      category_id: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        references : {
-          model: "categories",
-          key: "id",
-          as: "category_id"
-        }
-      },
-      price: {
-        type: Sequelize.DOUBLE,
+      lock_longitude: {
+        type: Sequelize.STRING,
         allowNull: false
       },
-      quantity: {
-        type: Sequelize.INTEGER,
+      kecamatan: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      kelurahan: {
+        type: Sequelize.STRING,
         allowNull: false
       },
       created_at: {
@@ -54,6 +49,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-     await queryInterface.dropTable('items')
+     await queryInterface.dropTable('tracks')
   }
 }
