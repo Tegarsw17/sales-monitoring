@@ -12,4 +12,4 @@ app.use('/v1', userRouter)
 module.exports = {
     app,
     express
-}
+};
