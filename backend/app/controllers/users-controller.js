@@ -9,12 +9,7 @@ class userController {
     async registerUser (req, res) {
         // using request body to parsing on user create queries
         try {
-            // const fullname = req.body.fullname
-            // const address = req.body.address
-            // const email = req.body.email
-            // const phone = req.body.phone
-            // const password = req.body.password
-            // const role = req.body.role
+
             const payload = req.body
 
             //validate the email
@@ -39,8 +34,8 @@ class userController {
     async loginUser (req, res) {
         try {
             //find user
-            const email = req.body.email
-            const findUser = await userQueries.findUserByEmail(email)
+            const payload = req.body
+            const findUser = await userQueries.findUserByEmail(payload)
             if(!findUser) { return responseHendler.notFound(res,message('email').notFoundResource)}
 
             const token = await generateToken(findUser)
