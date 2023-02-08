@@ -4,17 +4,25 @@ const bcrypt = require('bcrypt')
 
 //register new users
 
-const createUser = async (fullname, address, phone, email, pass, role) => {
+// fullname, address, phone, email, pass, role
+const createUser = async (payload) => {
     return User.create({
-        fullname: fullname,
-        address: address,
-        phone: phone,
-        email: email,
-        password: bcrypt.hashSync(pass, 8),
-        role: role
+        fullname: payload.fullname,
+        address: payload.address,
+        phone: payload.phone,
+        email: payload.email,
+        password: bcrypt.hashSync(payload.password, 8),
+        role: payload.role
+    })
+}
+
+const findUserByEmail = async (payload) => {
+    return User.findOne({
+        where: { email: payload.email }
     })
 }
 
 module.exports = {
     createUser,
+    findUserByEmail
 }
