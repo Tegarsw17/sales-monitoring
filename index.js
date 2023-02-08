@@ -1,7 +1,16 @@
-const express = require("express");
-const app = express();
+// const express = require("express");
+// const app = express();
 var path = require("path");
-const port = 3000;
+// const port = 3000;
+const dotenv = require('dotenv')
+
+dotenv.config({path: '.env'})
+
+const { app, express } = require('./backend/app')
+
+const port = process.env.PORT
+
+
 
 app.engine(".html", require("ejs").__express);
 
@@ -15,6 +24,7 @@ app.use(
 
 const viewSales = require("./frontend/routes/view/sales.route");
 app.use("/sales", viewSales);
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
