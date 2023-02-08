@@ -114,5 +114,10 @@
     </footer>
   </div>
   <!-- <a href="/sales">Back to Login</a> -->
+  <script>
+    if (!localStorage.getItem("token")) {
+      location.replace('/sales/login');
+    }
+  </script>
 
   <%- include('./templates/footer.html') -%>

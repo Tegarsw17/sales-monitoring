@@ -9,7 +9,7 @@
     </nav>
     <div class="flex mb-32 h-screen flex-col justify-center items-center">
       <img src="/public/logo.png" alt="/" width="150" class="mb-3" />
-      <form action="/sales/catalog">
+      <form action="/v1/api/login" method="post">
         <input class="p-2.5 mb-3 w-80 rounded bg-[#f4f4f4]" type="email" id="email" name="email"
           placeholder="Email" /><br />
         <input class="p-2.5 w-80 rounded bg-[#f4f4f4]" type="password" id="password" name="password"
@@ -21,10 +21,37 @@
     </div>
     <div>
       <!-- <footer
-      class="fixed z-50 h-14 w-screen bottom-0 bg-slate-200 text-2xl flex justify-center items-center rounded-t-lg"
-    >
-      ini footer
-    </footer> -->
+      class=" fixed z-50 h-14 w-screen bottom-0 bg-slate-200 text-2xl flex justify-center items-center rounded-t-lg">
+          ini footer
+          </footer> -->
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+
+    if (localStorage.getItem("token")) {
+      location.replace('/sales/catalog');
+    }
+
+    const form = document.querySelector("form");
+    form.addEventListener("submit", (e) => {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      const inputData = {
+        email: email,
+        password: password,
+      };
+      e.preventDefault();
+      axios
+        .post("/v1/api/login", inputData)
+        .then((res) => {
+          // console.log(res.data.data);
+          localStorage.setItem("token", res.data.data);
+          location.replace('/sales/catalog')
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  </script>
   <%- include('./templates/footer.html') -%>
