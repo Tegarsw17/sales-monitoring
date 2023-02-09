@@ -11,7 +11,6 @@ class userController {
         try {
 
             const payload = req.body
-
             //validate the email
             const findUser = await userQueries.findUserByEmail(payload)
             if(findUser) {return responseHendler.duplicate(res, message('email').duplicateData)}
