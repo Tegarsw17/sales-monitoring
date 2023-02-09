@@ -13,16 +13,16 @@ router.get('/login', function (req, res) {
   })
 })
 
-router.get('/:id', function (req, res) {
-  res.render('sales/detail', {
-    title: 'Detail',
+router.get('/cart', function (req, res) {
+  res.render('sales/cart', {
+    title: 'Cart',
     param: req.params.id,
   })
 })
 
-router.get('/cart', function (req, res) {
-  res.render('sales/cart', {
-    title: 'Cart',
+router.get('/catalog/:id', function (req, res) {
+  res.render('sales/detail', {
+    title: 'Detail',
     param: req.params.id,
   })
 })
