@@ -38,7 +38,11 @@ class userController {
             const token = await generateToken(findUser)
             if(!token) { return responseHendler.internalError(res,message().serverError)}
 
-            const data = token
+            const data = {
+                fullname: findUser.fullname,
+                role: findUser.role,
+                token: token
+            }
             return responseHendler.ok(res,message('login').success, data)
 
         }
