@@ -12,8 +12,9 @@ class itemController {
             //validate create
             if(!create) {return responseHendler.badRequest(res, message().errorMessage)}
 
+            const data = create
             //response return
-            return responseHendler.ok(res, message('item').created)
+            return responseHendler.ok(res, message('item').created, data)
 
         }
 
