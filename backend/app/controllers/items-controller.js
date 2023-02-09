@@ -1,6 +1,7 @@
 const { itemQueries } = require('../queries')
 const message = require('../../helpers/messages').MESSAGE
 const responseHendler = require('../../helpers/error-helper')
+const { itemDecorator} = require('../decorators/items-decorator')
 
 class itemController {
 
@@ -29,7 +30,7 @@ class itemController {
             const getAllItem = await itemQueries.getItem()
             if(getAllItem.length == 0) {return responseHendler.notFound(res, message(item).notFoundResource)}
     
-            const data = getAllItem
+            const data = await itemDecorator(getAllItem)
             return responseHendler.ok(res, message('get all item').success, data)
         }
         catch(err) {
