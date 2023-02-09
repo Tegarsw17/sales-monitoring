@@ -1,7 +1,7 @@
 <%- include('./templates/header.html') -%>
   <div class="flex h-screen flex-col">
     <nav class="sticky top-0 z-50 w-screen h-15 p-2 bg-[#fBfBfB] text-2xl flex justify-between items-center">
-      <i class="fa-solid fa-angle-left"></i>
+      <i class="fa-solid fa-angle-left invisible"></i>
       <p>
         <%= title %>
       </p>
@@ -30,7 +30,7 @@
   <script>
 
     if (localStorage.getItem("token")) {
-      location.replace('/sales/catalog');
+      location.replace('/');
     }
 
     const form = document.querySelector("form");
@@ -47,7 +47,7 @@
         .then((res) => {
           // console.log(res.data.data);
           localStorage.setItem("token", res.data.data);
-          location.replace('/sales/catalog')
+          location.replace('/')
         })
         .catch((err) => {
           console.log(err);

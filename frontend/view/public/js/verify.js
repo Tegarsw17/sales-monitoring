@@ -21,26 +21,28 @@ const verifyPage = async () => {
   if (token) {
     if (verifyToken) {
       const currentPath = location.pathname
-      if (currentPath === '/sales/login') {
-        location.replace('/sales/catalog')
+      if (currentPath === '/login') {
+        location.replace('/')
       }
       return true
     } else {
       localStorage.removeItem('token')
     }
   }
-  if (!token && location.pathname != '/sales/login') {
-    errorAlert('Silahkan login terlebih dahulu!', '/sales/login')
+  if (!token && location.pathname != '/login') {
+    var element = document.getElementById('list-catalog')
+    element.classList.add('invisible')
+    warningAlert('Silahkan login terlebih dahulu!', '/login')
     return false
   }
 }
 
 const logout = async () => {
   try {
-    successAlert('Logout Berhasil!', '/sales/login')
+    successAlert('Logout Berhasil!', '/login')
     localStorage.removeItem('token')
   } catch (err) {
-    errorAlert(err.message, '/sales/catalog')
+    errorAlert(err.message, '/')
   }
 }
 

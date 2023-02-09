@@ -19,3 +19,14 @@ const successAlert = async (message, link) => {
     location.replace(link)
   })
 }
+
+const warningAlert = async (message, link) => {
+  await Swal.fire({
+    // title: 'Success!',
+    title: message,
+    icon: 'warning',
+    confirmButtonText: 'Confirm',
+  }).then((result) => {
+    location.replace(link)
+  })
+}

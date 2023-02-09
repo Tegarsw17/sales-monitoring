@@ -1,26 +1,26 @@
 const express = require('express')
 const router = express.Router()
 
+router.get('/', function (req, res) {
+  res.render('sales/catalog', {
+    title: 'Catalog',
+  })
+})
+
 router.get('/login', function (req, res) {
   res.render('sales/login', {
     title: 'Log In',
   })
 })
 
-router.get('/catalog', function (req, res) {
-  res.render('sales/catalog', {
-    title: 'Catalog',
-  })
-})
-
-router.get('/catalog/:id', function (req, res) {
+router.get('/:id', function (req, res) {
   res.render('sales/detail', {
     title: 'Detail',
     param: req.params.id,
   })
 })
 
-router.get('/cart/', function (req, res) {
+router.get('/cart', function (req, res) {
   res.render('sales/cart', {
     title: 'Cart',
     param: req.params.id,
