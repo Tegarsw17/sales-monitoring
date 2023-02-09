@@ -8,9 +8,10 @@ class itemController {
 
         try {
             const payload = req.body
-            const create = await itemQueries.createItem(payload)
+            const auth = req.userId
+            const create = await itemQueries.createItem(payload, auth)
             //validate create
-            if(!create) {return responseHendler.badRequest(res, message().errorMessage)}
+            if(!create) {return responseHendler.badRequest(res, message('item').invalidCreateResource)}
 
             const data = create
             //response return

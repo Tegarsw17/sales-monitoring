@@ -32,6 +32,7 @@ class userController {
         try {
             //find user
             const payload = req.body
+            
             const findUser = await userQueries.findUserByEmail(payload)
             if(!findUser) { return responseHendler.notFound(res,message('email').notFoundResource)}
 
