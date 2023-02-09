@@ -24,6 +24,20 @@ class itemController {
             return responseHendler.badRequest(res, message(key).errorMessage)
         }
     }
+    async getItem(req, res) {
+        try {
+            const getAllItem = await itemQueries.getItem()
+            if(getAllItem.length == 0) {return responseHendler.notFound(res, message(item).notFoundResource)}
+    
+            const data = getAllItem
+            return responseHendler.ok(res, message('get all item').success, data)
+        }
+        catch(err) {
+            const key = err.message
+            return responseHendler.badRequest(res, message(key).errorMessage)
+        }
+       
+    }
 }
 
 module.exports = {

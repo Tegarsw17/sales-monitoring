@@ -18,7 +18,7 @@ class userController {
             const newUser = await userQueries.createUser(payload)
             if (!newUser) {return responseHendler.badRequest(res, message().errorMessage)}
 
-            return responseHendler.ok(res, message('register').success)
+            return responseHendler.ok(res, message('user').created)
 
         }
 

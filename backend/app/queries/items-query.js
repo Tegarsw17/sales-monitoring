@@ -21,4 +21,5 @@ const getItem = async () => {
 
 module.exports = {
     createItem,
+    getItem,
 }
