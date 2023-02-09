@@ -14,6 +14,7 @@ const MESSAGE = (key) => {
     const unathorization = 'failed to authorize';
     const serverError = 'Internal Server Error';
     const duplicateData = `${key} already registered in our database`;
+    const errorMessage = key
     
     return message = {
       success,
@@ -30,6 +31,7 @@ const MESSAGE = (key) => {
       unathorization,
       serverError,
       duplicateData,
+      errorMessage,
     }
   }
     

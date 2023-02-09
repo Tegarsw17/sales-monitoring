@@ -3,8 +3,6 @@ const bcrypt = require('bcrypt')
 
 
 //register new users
-
-// fullname, address, phone, email, pass, role
 const createUser = async (payload) => {
     return User.create({
         fullname: payload.fullname,
@@ -21,6 +19,7 @@ const findUserByEmail = async (payload) => {
         where: { email: payload.email }
     })
 }
+
 
 module.exports = {
     createUser,

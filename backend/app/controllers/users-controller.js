@@ -11,23 +11,20 @@ class userController {
         try {
 
             const payload = req.body
-
             //validate the email
             const findUser = await userQueries.findUserByEmail(payload)
             if(findUser) {return responseHendler.duplicate(res, message('email').duplicateData)}
             //create a new user
             const newUser = await userQueries.createUser(payload)
-            if (!newUser) {return responseHendler.badRequest(res, message().serverError)}
+            if (!newUser) {return responseHendler.badRequest(res, message().errorMessage)}
 
             return responseHendler.ok(res, message('register').success)
 
         }
 
         catch (err) {
-            return res.status(400).json({
-                message: err.message
-            })
-            // return responseHendler.internalError(res, message().serverError)
+            const key = err.message
+            return responseHendler.internalError(res, message(key).errorMessage)
         }
     }
 
@@ -41,16 +38,18 @@ class userController {
             const token = await generateToken(findUser)
             if(!token) { return responseHendler.internalError(res,message().serverError)}
 
-            const data = token
+            const data = {
+                fullname: findUser.fullname,
+                role: findUser.role,
+                token: token
+            }
             return responseHendler.ok(res,message('login').success, data)
 
         }
 
         catch (err) {
-            return res.status(400).json({
-                message: err.message
-            })
-            // return responseHendler.internalError(res, message().serverError)
+            const key = err.message
+            return responseHendler.internalError(res, message(key).errorMessage)
         }
 
     }
