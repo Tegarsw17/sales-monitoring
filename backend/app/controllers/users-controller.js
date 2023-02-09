@@ -16,7 +16,7 @@ class userController {
             if(findUser) {return responseHendler.duplicate(res, message('email').duplicateData)}
             //create a new user
             const newUser = await userQueries.createUser(payload)
-            if (!newUser) {return responseHendler.badRequest(res, message().serverError)}
+            if (!newUser) {return responseHendler.badRequest(res, message().errorMessage)}
 
             return responseHendler.ok(res, message('register').success)
 
