@@ -22,7 +22,7 @@ router.get('/cart', function (req, res) {
 
 router.get('/catalog/:id', function (req, res) {
   res.render('sales/detail', {
-    title: 'Detail',
+    title: 'Detail Produk',
     param: req.params.id,
   })
 })
