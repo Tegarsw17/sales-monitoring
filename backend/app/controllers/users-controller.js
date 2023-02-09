@@ -24,10 +24,8 @@ class userController {
         }
 
         catch (err) {
-            return res.status(400).json({
-                message: err.message
-            })
-            // return responseHendler.internalError(res, message().serverError)
+            const key = err.message
+            return responseHendler.internalError(res, message(key).errorMessage)
         }
     }
 
@@ -47,10 +45,8 @@ class userController {
         }
 
         catch (err) {
-            return res.status(400).json({
-                message: err.message
-            })
-            // return responseHendler.internalError(res, message().serverError)
+            const key = err.message
+            return responseHendler.internalError(res, message(key).errorMessage)
         }
 
     }
