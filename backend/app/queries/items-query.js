@@ -1,4 +1,4 @@
-const { Item } = require('../../db/models')
+const { Item, Category } = require('../../db/models')
 
 
 
@@ -16,7 +16,9 @@ const createItem = async (payload, auth) => {
 }
 
 const getItem = async () => {
-    return Item.findAll()
+    return Item.findAll({
+        include: Category,
+    })
 }
 
 module.exports = {
