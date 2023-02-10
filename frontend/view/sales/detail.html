@@ -1,7 +1,7 @@
 <%- include('./templates/header.html') -%>
   <div class="z-50 sticky top-0 flex flex-col">
     <nav class="w-screen h-15 p-2 bg-[#fBfBfB] text-2xl flex justify-between items-center">
-      <a href="/sales/catalog"><i class="fa-solid fa-angle-left"></i></a>
+      <a href="/"><i class="fa-solid fa-angle-left"></i></a>
       <p>
         <%= title %>
       </p>
@@ -35,40 +35,41 @@
       Tambahkan ke Keranjang
     </button>
   </div>
+  <%- include('./templates/navbar.html') -%>
 
-  <script>
-    let incrementButton = document.getElementById("increment");
-    let decrementButton = document.getElementById("decrement");
-    let counter = document.getElementById("counter");
-    let count = 0;
+    <script>
+      let incrementButton = document.getElementById("increment");
+      let decrementButton = document.getElementById("decrement");
+      let counter = document.getElementById("counter");
+      let count = 0;
 
-    incrementButton.addEventListener("click", function () {
-      count++;
-      counter.textContent = count;
-      zeroCheck(count);
-    });
+      incrementButton.addEventListener("click", function () {
+        count++;
+        counter.textContent = count;
+        zeroCheck(count);
+      });
 
-    decrementButton.addEventListener("click", () => {
-      count--;
-      counter.textContent = count;
-      zeroCheck(count);
-    });
+      decrementButton.addEventListener("click", () => {
+        count--;
+        counter.textContent = count;
+        zeroCheck(count);
+      });
 
-    function zeroCheck(count) {
-      if (count == 0) {
-        decrementButton.classList.add("invisible");
-      } else {
-        decrementButton.classList.remove("invisible");
+      function zeroCheck(count) {
+        if (count == 0) {
+          decrementButton.classList.add("invisible");
+        } else {
+          decrementButton.classList.remove("invisible");
+        }
       }
-    }
 
-    function isCartHaveId() {
-      if (!sessionStorage.getItem("cartId")) {
-        alert("Yakin membuat cart baru?");
-        sessionStorage.setItem("cartId", "15");
+      function isCartHaveId() {
+        if (!sessionStorage.getItem("cartId")) {
+          alert("Yakin membuat cart baru?");
+          sessionStorage.setItem("cartId", "15");
+        }
+        let personName = sessionStorage.getItem("cartId");
+        document.getElementById("demo").innerHTML = personName;
       }
-      let personName = sessionStorage.getItem("cartId");
-      document.getElementById("demo").innerHTML = personName;
-    }
-  </script>
-  <%- include('./templates/footer.html') -%>
+    </script>
+    <%- include('./templates/footer.html') -%>

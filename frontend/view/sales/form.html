@@ -1,7 +1,7 @@
 <%- include('./templates/header.html') -%>
   <div class="z-50 sticky top-0 flex flex-col">
     <nav class="w-screen h-15 p-2 bg-[#fBfBfB] text-2xl flex justify-between items-center">
-      <a href="/sales/catalog"><i class="fa-solid fa-angle-left"></i></a>
+      <a href="/"><i class="fa-solid fa-angle-left"></i></a>
       <p>
         <%= title %>
       </p>
@@ -28,54 +28,47 @@
       </button>
     </div>
   </div>
-  <div>
-    <footer
-      class="fixed z-50 h-14 w-screen bottom-0 bg-slate-200 text-2xl flex justify-around items-center rounded-t-lg">
-      <a href="/sales/catalog"><i class="fa-solid fa-book"></i></a>
-      <a href="/sales"><i class="fa-solid fa-chart-simple"></i></a>
-      <a href="/sales/form"><i class="fa-solid fa-pen-to-square"></i></a>
-    </footer>
-  </div>
-  <script>
-    let getLocation = document.getElementById("getLocation");
-    let addtext = document.getElementById("findLocation");
+  <%- include('./templates/navbar.html') -%>
+    <script>
+      let getLocation = document.getElementById("getLocation");
+      let addtext = document.getElementById("findLocation");
 
-    getLocation.addEventListener("click", function () {
-      const success = (position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        addtext.textContent = `latitude:${latitude} longitude:${longitude}`;
-        const getApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+      getLocation.addEventListener("click", function () {
+        const success = (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          addtext.textContent = `latitude:${latitude} longitude:${longitude}`;
+          const getApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
 
-        fetch(getApi)
-          .then((response) => response.json())
-          .then((data) => console.log(data));
-        //   .then((addtext.textContent = "lokasi sudah ditemukan"));
-      };
-      const err = (err) => {
-        addtext.textContent = err.message;
-      };
-      navigator.geolocation.getCurrentPosition(success, err, {
-        enableHighAccuracy: true,
-        timeout: 5000,
+          fetch(getApi)
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+          //   .then((addtext.textContent = "lokasi sudah ditemukan"));
+        };
+        const err = (err) => {
+          addtext.textContent = err.message;
+        };
+        navigator.geolocation.getCurrentPosition(success, err, {
+          enableHighAccuracy: true,
+          timeout: 5000,
+        });
       });
-    });
-    function previewFile() {
-      var preview = document.querySelector("img");
-      var file = document.querySelector("input[type=file]").files[0];
-      var nonPreview = document.getElementById("data-foto");
-      var reader = new FileReader();
+      function previewFile() {
+        var preview = document.querySelector("img");
+        var file = document.querySelector("input[type=file]").files[0];
+        var nonPreview = document.getElementById("data-foto");
+        var reader = new FileReader();
 
-      reader.onloadend = function () {
-        preview.src = reader.result;
-      };
+        reader.onloadend = function () {
+          preview.src = reader.result;
+        };
 
-      if (file) {
-        reader.readAsDataURL(file);
-        nonPreview.remove();
-      } else {
-        preview.src = "";
+        if (file) {
+          reader.readAsDataURL(file);
+          nonPreview.remove();
+        } else {
+          preview.src = "";
+        }
       }
-    }
-  </script>
-  <%- include('./templates/footer.html') -%>
+    </script>
+    <%- include('./templates/footer.html') -%>
