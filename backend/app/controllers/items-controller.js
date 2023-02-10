@@ -73,6 +73,25 @@ class itemController {
             return responseHendler.badRequest(res, message(key).errorMessage)
         }
     }
+
+    async deleteItem(req, res) {
+        try {
+            //find item
+            const payload = req.params
+
+            const findItem = await itemQueries.getItemById(payload)
+            if(!findItem) { return responseHendler.notFound(res, message('item').notFoundResource)}
+            //update item
+            const deleteItemById = await itemQueries.deleteItem(findItem)
+            if(!deleteItemById) { return responseHendler.badRequest(res, message().serverError)}
+            
+            return responseHendler.ok(res, message('item').deleted)
+        }
+        catch(err) {
+            const key = err.message
+            return responseHendler.badRequest(res, message(key).errorMessage)
+        }
+    }
 }
 
 module.exports = {

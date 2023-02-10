@@ -42,8 +42,8 @@ const updateItem = async (payload1, payload2) => {
     })
 }
 
-const deleteItem = async (payload, auth) => {
-    return Item.delete({
+const deleteItem = async (payload) => {
+    return Item.destroy({
         where: {
             id: payload.id,
         }

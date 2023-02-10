@@ -14,6 +14,8 @@ router.get('/api/item',itemcontroller.getItem)
 router.post('/api/item/:id',itemcontroller.getItemById)
 //route update item
 router.patch('/api/item/:id',tokenjwt.verifyToken,otorisasi.authorization('admin'), itemcontroller.updateItem)
+//route delete item
+router.delete('/api/item/:id',tokenjwt.verifyToken,otorisasi.authorization('admin'), itemcontroller.deleteItem)
 
 module.exports = router
 
