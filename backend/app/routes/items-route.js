@@ -6,8 +6,12 @@ const otorisasi = require('../middlewares/authorization')
 const itemcontroller = new itemController()
 const tokenjwt = new tokenJwt()
 
+//route create item
 router.post('/api/item',tokenjwt.verifyToken,otorisasi.authorization('admin'), itemcontroller.createItem )
+//route get all item
 router.get('/api/item',itemcontroller.getItem)
+//route get item by id
+router.post('/api/item/:id',itemcontroller.getItemById)
 
 module.exports = router
 
