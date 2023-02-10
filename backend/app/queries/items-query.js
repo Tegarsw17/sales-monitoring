@@ -31,22 +31,11 @@ const getItemById = async (payload) => {
     })
 }
 
-//for verification other controllers
-const getItemV = async (payload, auth) => {
-    return Item.findOne({
-        where: { 
-            id: payload.id,
-            user_id: auth
-        },
-        include: Category,
-    })
-}
-
 //for admin role
-const updateItem = async (payload, auth) => {
-    return Item.update(payload,{
+const updateItem = async (payload1, payload2) => {
+    return Item.update(payload1,{
         where: { 
-            id: payload.id,
+            id: payload2.id,
         },
         include: Category,
 
@@ -65,7 +54,6 @@ module.exports = {
     createItem,
     getItem,
     getItemById,
-    getItemV,
     updateItem,
     deleteItem
 }

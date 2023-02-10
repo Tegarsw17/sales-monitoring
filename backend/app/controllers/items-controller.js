@@ -53,6 +53,26 @@ class itemController {
             return responseHendler.badRequest(res, message(key).errorMessage)
         }
     }
+
+    async updateItem(req, res) {
+        try {
+            //find item 
+            const payload1 = req.params
+            const payload2 = req.body
+
+            const findItem = await itemQueries.getItemById(payload1)
+            if(!findItem) { return responseHendler.notFound(res, message('item').notFoundResource)}
+            //update item
+            const updateItem = await itemQueries.updateItem(payload2, findItem)
+            if(!updateItem) { return responseHendler.badRequest(res, message().serverError)}
+            
+            return responseHendler.ok(res, message('item').updated)
+        }
+        catch(err) {
+            const key = err.message
+            return responseHendler.badRequest(res, message(key).errorMessage)
+        }
+    }
 }
 
 module.exports = {

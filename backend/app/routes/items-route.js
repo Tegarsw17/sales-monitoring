@@ -12,6 +12,8 @@ router.post('/api/item',tokenjwt.verifyToken,otorisasi.authorization('admin'), i
 router.get('/api/item',itemcontroller.getItem)
 //route get item by id
 router.post('/api/item/:id',itemcontroller.getItemById)
+//route update item
+router.patch('/api/item/:id',tokenjwt.verifyToken,otorisasi.authorization('admin'), itemcontroller.updateItem)
 
 module.exports = router
 
