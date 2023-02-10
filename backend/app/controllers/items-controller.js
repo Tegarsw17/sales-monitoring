@@ -1,7 +1,7 @@
 const { itemQueries } = require('../queries')
 const message = require('../../helpers/messages').MESSAGE
 const responseHendler = require('../../helpers/error-helper')
-const { itemDecorator} = require('../decorators/items-decorator')
+const { itemDecorator } = require('../decorators/items-decorator')
 
 class itemController {
 
