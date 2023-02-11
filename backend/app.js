@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const { userRouter, itemRouter } = require('./app/routes')
+const { userRouter, itemRouter, imageItemRouter } = require('./app/routes')
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
@@ -16,6 +16,7 @@ app.use(function(req, res, next) {
 // Router
 app.use('/v1', userRouter)
 app.use('/v1', itemRouter)
+app.use('/v1', imageItemRouter)
 
 
 module.exports = {
