@@ -13,99 +13,36 @@
         placeholder="Search" />
     </form>
   </div>
-  <div id="list-catalog" class="grid grid-cols-2 gap-2 place-items-center mx-2 mb-20">
-    <a href="/catalog/fruit">
-      <div class="card" style="width: 150px">
-        <img src="https://source.unsplash.com/random/150x150/?fruit" loading="lazy" class="card-img-top" alt="/" />
-        <div class="card-body">
-          <h5 class="card-title">Cat Warna</h5>
-          <p class="card-text">Rp 250.000</p>
-        </div>
-      </div>
-    </a>
-    <a href="/catalog/city">
-      <div class="card" style="width: 150px">
-        <img src="https://source.unsplash.com/random/150x150/?city" loading="lazy" class="card-img-top" alt="/" />
-        <div class="card-body">
-          <h5 class="card-title">Kuas</h5>
-          <p class="card-text">Rp 50.000</p>
-        </div>
-      </div>
-    </a>
-    <a href="/catalog/sea">
-      <div class="card" style="width: 150px">
-        <img src="https://source.unsplash.com/random/150x150/?sea" loading="lazy" class="card-img-top" alt="/" />
-        <div class="card-body">
-          <h5 class="card-title">Cat Warna</h5>
-          <p class="card-text">Rp 250.000</p>
-        </div>
-      </div>
-    </a>
-    <a href="/catalog/mountain">
-      <div class="card" style="width: 150px">
-        <img src="https://source.unsplash.com/random/150x150/?mountain" loading="lazy" class="card-img-top" alt="/" />
-        <div class="card-body">
-          <h5 class="card-title">Kuas</h5>
-          <p class="card-text">Rp 50.000</p>
-        </div>
-      </div>
-    </a>
-    <a href="/catalog/bird">
-      <div class="card" style="width: 150px">
-        <img src="https://source.unsplash.com/random/150x150/?bird" loading="lazy" class="card-img-top" alt="/" />
-        <div class="card-body">
-          <h5 class="card-title">Cat Warna</h5>
-          <p class="card-text">Rp 250.000</p>
-        </div>
-      </div>
-    </a>
-    <a href="/catalog/book">
-      <div class="card" style="width: 150px">
-        <img src="https://source.unsplash.com/random/150x150/?book" loading="lazy" class="card-img-top" alt="/" />
-        <div class="card-body">
-          <h5 class="card-title">Kuas</h5>
-          <p class="card-text">Rp 50.000</p>
-        </div>
-      </div>
-    </a>
-    <a href="/catalog/gun">
-      <div class="card" style="width: 150px">
-        <img src="https://source.unsplash.com/random/150x150/?gun" loading="lazy" class="card-img-top" alt="/" />
-        <div class="card-body">
-          <h5 class="card-title">Kuas</h5>
-          <p class="card-text">Rp 50.000</p>
-        </div>
-      </div>
-    </a>
-    <a href="/catalog/flower">
-      <div class="card" style="width: 150px">
-        <img src="https://source.unsplash.com/random/150x150/?flower" loading="lazy" class="card-img-top" alt="/" />
-        <div class="card-body">
-          <h5 class="card-title">Kuas</h5>
-          <p class="card-text">Rp 50.000</p>
-        </div>
-      </div>
-    </a>
-    <a href="/catalog/laptop">
-      <div class="card" style="width: 150px">
-        <img src="https://source.unsplash.com/random/150x150/?laptop" loading="lazy" class="card-img-top" alt="/" />
-        <div class="card-body">
-          <h5 class="card-title">Kuas</h5>
-          <p class="card-text">Rp 50.000</p>
-        </div>
-      </div>
-    </a>
-    <a href="/catalog/card">
-      <div class="card" style="width: 150px">
-        <img src="https://source.unsplash.com/random/150x150/?card" loading="lazy" class="card-img-top" alt="/" />
-        <div class="card-body">
-          <h5 class="card-title">Kuas</h5>
-          <p class="card-text">Rp 50.000</p>
-        </div>
-      </div>
-    </a>
+  <div id="listCatalog" class="grid grid-cols-2 gap-2 place-items-center mx-2 mb-20">
+    <!-- input data -->
   </div>
   <!-- <a href="/sales">Back to Login</a> -->
 
   <%- include('./templates/navbar.html') -%>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const getData = async () => {
+
+        var dataItem = await axios.get("v1/api/item")
+        var data = dataItem.data.data
+        // var data = getData("/public/data.json")
+        // console.log(data)
+        const element = document.getElementById("listCatalog");
+        let listItem = ""
+        for (let i = 0; i < Object.keys(data).length; i++) {
+          listItem += `<a href="/catalog/${data[i].id_item}">
+          <div class="card" style="width: 150px">
+            <img src="https://source.unsplash.com/random/150x150/?${data[i].id_item}" loading="lazy" class="card-img-top" alt="/" />
+            <div class="card-body">
+              <h5 class="card-title" maxlength="4">${limitChar(data[i].name_item, 22)}</h5>
+              <p class="card-text font-bold text-lg">${formatRupiah(data[i].price, 'Rp ')}</p>
+            </div>
+          </div>
+        </a>`;
+        }
+        element.innerHTML = listItem
+
+      }
+      getData()
+    </script>
     <%- include('./templates/footer.html') -%>

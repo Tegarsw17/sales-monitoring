@@ -1,0 +1,14 @@
+{
+    "error": false,
+    "type": "success",
+    "message": "get all item success",
+    "data": [
+    {
+    "id_item": 2,
+    "name_item": "Cat Nippon Pain",
+    "category_id": 1,
+    "category_name": "",
+    "Description": "cat kualitas unggul dengan berbagai macam warna asli jepang",
+    "price": 300000,
+    "quantity": 2
+    }]}
