@@ -1,19 +1,59 @@
-const { Item } = require('../../db/models')
+const { Item, Category } = require('../../db/models')
 
 
 
-//create new item
-
-const createItem = async (payload) => {
+//for admin role
+const createItem = async (payload, auth) => {
     return Item.create({
-        user_id: payload.user_id,
+        user_id: auth,
         name_item: payload.name_item,
         category_id: payload.category_id,  
+        item_description: payload.description,
         price: payload.price,
         quantity: payload.quantity
     })
 }
 
+//for all role
+const getItem = async () => {
+    return Item.findAll({
+        include: Category,
+    })
+}
+
+//for all role
+const getItemById = async (payload) => {
+    return Item.findOne({
+        where: { 
+            id: payload.id,
+        },
+        include: Category,
+    })
+}
+
+//for admin role
+const updateItem = async (payload1, payload2) => {
+    return Item.update(payload1,{
+        where: { 
+            id: payload2.id,
+        },
+        include: Category,
+
+    })
+}
+
+const deleteItem = async (payload) => {
+    return Item.destroy({
+        where: {
+            id: payload.id,
+        }
+    })
+}
+
 module.exports = {
     createItem,
+    getItem,
+    getItemById,
+    updateItem,
+    deleteItem
 }

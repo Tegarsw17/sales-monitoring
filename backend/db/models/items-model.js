@@ -26,6 +26,10 @@ item.init(
         allowNull: true,
         field: 'category_id'
       },
+      item_description: {
+        type: DataTypes.TEXT,
+        allowNull: true
+      },
       price: {
         type: DataTypes.DOUBLE,
         allowNull: false

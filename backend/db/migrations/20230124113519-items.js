@@ -31,6 +31,10 @@ module.exports = {
           as: "category_id"
         }
       },
+      item_description: {
+        type: Sequelize.TEXT,
+        allowNull: true
+      },
       price: {
         type: Sequelize.DOUBLE,
         allowNull: false
