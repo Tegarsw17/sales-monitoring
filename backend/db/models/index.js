@@ -11,7 +11,7 @@ Item.belongsTo(Category, {
   foreignKey: 'category_id'
 })
 
-image_item.belongsTo(Item, {
+Image_item.belongsTo(Item, {
   foreignKey: 'item_id'
 })
 

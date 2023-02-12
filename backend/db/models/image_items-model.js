@@ -1,10 +1,10 @@
 const { Model, DataTypes } = require("sequelize")
-const sequelize = require("../../config/config.js")
+const sequelize = require("../config/config")
 
-class image extends Model {
+class image_item extends Model {
 }
 
-image.init(
+image_item.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -32,4 +32,4 @@ image.init(
   },
 )
 
-module.exports = image
+module.exports = image_item

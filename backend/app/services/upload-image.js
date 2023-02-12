@@ -1,8 +1,10 @@
 const multer = require('multer')
 const util = require('util')
-// const path = require('path')
-// const __basedir = path.resolve()
-const supabase = require('../../db/config/supabase')
+const path = require('path')
+const __basedir = path.resolve()
+// const { url, nameBucket, supabase } = require('../../db/config/supabase')
+// const path = `${supabase.storage.url}/storage/v1/object/public/${nameBucket}`
+
 
 const imageFilter = (req, file, cb) => {
     if(file.mimetype.startsWith('image')) {
@@ -12,13 +14,13 @@ const imageFilter = (req, file, cb) => {
     }
 }
 
-const path = supabase.storage.from('upload')
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path)
+        cb(null, __basedir + '/storage/image.item')
     },
     filename: (req, file, cb) => {
-        cb(null, `${Date.now()}-${file.originalname}`) //
+        cb(null, `${Date.now()}-${file.originalname}`) 
     },
 })
 

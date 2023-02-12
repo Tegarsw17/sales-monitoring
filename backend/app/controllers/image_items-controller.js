@@ -9,13 +9,13 @@ class imageItemController {
     async uploadImage(req, res) {
         try {
             const id = req.params.id
-            const files = req.files
+            
+            await uploadFile(req, res)
+    
+            if(req.files === undefined) { return responseHendler.badRequest(res, message('images').incompleteKeyOrValue)}
 
-            if(!files) { return responseHendler.badRequest(res, message('images').incompleteKeyOrValue)}
-
-            const upload = await uploadFile(req, res)
-
-            let images = files.map((item) => {
+            console.log(req.files)
+            let images = req.files.map((item) => {
                 const image = {}
                 image.item_id = id
                 image.url = item.filename

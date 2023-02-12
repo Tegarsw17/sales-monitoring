@@ -3,6 +3,6 @@ const router = require('express').Router()
 
 const imageitemcontroller = new imageItemController()
 
-router.post('/api/imageitem',imageitemcontroller.uploadImage)
+router.post('/api/imageitem/:id',imageitemcontroller.uploadImage)
 
 module.exports = router
