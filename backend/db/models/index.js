@@ -15,6 +15,10 @@ Image_item.belongsTo(Item, {
   foreignKey: 'item_id'
 })
 
+Item.hasMany(Image_item, {
+  foreignKey: 'item_id'
+})
+
 module.exports = {
   User,
   Item,

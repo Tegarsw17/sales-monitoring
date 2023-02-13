@@ -1,4 +1,4 @@
-const { Item, Category } = require('../../db/models')
+const { Item, Category, Image_item } = require('../../db/models')
 
 
 
@@ -17,7 +17,14 @@ const createItem = async (payload, auth) => {
 //for all role
 const getItem = async () => {
     return Item.findAll({
-        include: Category,
+        include: [
+            {
+                model: Image_item,
+            },
+            {
+                model: Category,
+            }
+        ],
     })
 }
 
@@ -27,7 +34,14 @@ const getItemById = async (payload) => {
         where: { 
             id: payload.id,
         },
-        include: Category,
+        include: [
+            {
+                model: Image_item,
+            },
+            {
+                model: Category,
+            }
+        ],
     })
 }
 
