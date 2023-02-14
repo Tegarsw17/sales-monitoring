@@ -1,4 +1,7 @@
 const { Item, Category, Image_item } = require('../../db/models')
+const Sequelize = require('sequelize')
+const searchBuilder = require('sequelize-search-builder')
+const Op = Sequelize.Op
 
 
 
@@ -56,6 +59,7 @@ const updateItem = async (payload1, payload2) => {
     })
 }
 
+//for admin role
 const deleteItem = async (payload) => {
     return Item.destroy({
         where: {
@@ -64,10 +68,23 @@ const deleteItem = async (payload) => {
     })
 }
 
+const searchItem = async (payload) => {
+    // Set req.query param to Search Builder constructor
+  
+    return Item.findAll({
+            // where: {
+            //     item_name: {
+            //         [Op.iLike]: `%${payload.item_name}%` 
+            //     }
+            // }
+        })
+}
+
 module.exports = {
     createItem,
     getItem,
     getItemById,
     updateItem,
-    deleteItem
+    deleteItem,
+    searchItem,
 }
