@@ -25,16 +25,14 @@
 
         var dataItem = await axios.get("v1/api/item")
         var data = dataItem.data.data
-        // var data = getData("/public/data.json")
-        // console.log(data)
         const element = document.getElementById("listCatalog");
         let listItem = ""
         for (let i = 0; i < Object.keys(data).length; i++) {
           listItem += `<a href="/catalog/${data[i].id_item}">
           <div class="card" style="width: 150px">
-            <img src="${data[i].images.url}" loading="lazy" class="card-img-top" alt="/" />
+            <img src="${data[i].images?.url ? data[i].images.url : "/public/default.png"}" loading="lazy" class="card-img-top" alt="/public/default.png" />
             <div class="card-body">
-              <h5 class="card-title" maxlength="4">${limitChar(data[i].name_item, 22)}</h5>
+              <h5 class="card-title">${limitChar(data[i].name_item, 22)}</h5>
               <p class="card-text font-bold text-lg">${formatRupiah(data[i].price, 'Rp ')}</p>
             </div>
           </div>

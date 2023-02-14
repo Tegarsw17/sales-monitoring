@@ -10,7 +10,7 @@
   </div>
   <div class="flex justify-center items-center mt-3 mx-4 bg-[#fBfBfB] rounded h-48">
     <!-- <h1 class="">INI DETAIL</h1> -->
-    <img id="imgItem" src="https://source.unsplash.com/random/200x150/?<%= param %>" alt="" />
+    <img id="imgItem" src="" alt="" />
   </div>
   <div class="flex flex-col justify-start mt-2 mx-5">
     <p class="font-bold text-xl" id="priceItem"></p>
@@ -37,15 +37,14 @@
     <script>
       const getData = async () => {
 
-        var dataItem = await axios.get("/public/singgleData.json")
+        var dataItem = await axios.get("v1/api/item/<%= param %>")
         var data = dataItem.data.data
-        console.log(data)
         const elementImg = document.getElementById("imgItem");
         const elementPrice = document.getElementById("priceItem");
         const elementName = document.getElementById("nameItem");
         const elementDes = document.getElementById("descriptionItem");
 
-        elementName.src += data[0].images.url
+        elementImg.src += data[0]?.images?.url ? data[0].images.url : "/public/default.png"
         elementPrice.innerHTML += formatRupiah(data[0].price, 'Rp ')
         elementName.innerHTML += data[0].name_item
         elementDes.innerHTML += data[0].Description
@@ -54,50 +53,5 @@
 
     </script>
 
-    <script>
-      let incrementButton = document.getElementById("increment");
-      let decrementButton = document.getElementById("decrement");
-      let counter = document.getElementById("counter");
-      let count = 0;
-
-      incrementButton.addEventListener("click", function () {
-        count++;
-        counter.textContent = count;
-        zeroCheck(count);
-      });
-
-      decrementButton.addEventListener("click", () => {
-        count--;
-        counter.textContent = count;
-        zeroCheck(count);
-      });
-
-      function zeroCheck(count) {
-        if (count == 0) {
-          decrementButton.classList.add("invisible");
-        } else {
-          decrementButton.classList.remove("invisible");
-        }
-      }
-
-      const addToCart = () => {
-        const nameItem = document.getElementById("nameItem").innerHTML
-        if (count != 0) {
-
-          successAlert(`berhasil menambahkan ${count} ${nameItem}`, window.location.href)
-        } else {
-          errorAlert(`jumlah belum diisi`)
-        }
-        // alert(`berhasil menambahkan ${count} ${nameItem}`);
-      }
-
-      function isCartHaveId() {
-        if (!sessionStorage.getItem("cartId")) {
-          alert("Yakin membuat cart baru?");
-          sessionStorage.setItem("cartId", "15");
-        }
-        let personName = sessionStorage.getItem("cartId");
-        document.getElementById("demo").innerHTML = personName;
-      }
-    </script>
+    <script src="/public/js/detail.js"></script>
     <%- include('./templates/footer.html') -%>
