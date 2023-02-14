@@ -32,7 +32,7 @@
         for (let i = 0; i < Object.keys(data).length; i++) {
           listItem += `<a href="/catalog/${data[i].id_item}">
           <div class="card" style="width: 150px">
-            <img src="https://source.unsplash.com/random/150x150/?${data[i].id_item}" loading="lazy" class="card-img-top" alt="/" />
+            <img src="${data[i].images.url}" loading="lazy" class="card-img-top" alt="/" />
             <div class="card-body">
               <h5 class="card-title" maxlength="4">${limitChar(data[i].name_item, 22)}</h5>
               <p class="card-text font-bold text-lg">${formatRupiah(data[i].price, 'Rp ')}</p>

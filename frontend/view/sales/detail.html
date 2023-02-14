@@ -40,11 +40,12 @@
         var dataItem = await axios.get("/public/singgleData.json")
         var data = dataItem.data.data
         console.log(data)
-        // const elementImg = document.getElementById("imgItem");
+        const elementImg = document.getElementById("imgItem");
         const elementPrice = document.getElementById("priceItem");
         const elementName = document.getElementById("nameItem");
         const elementDes = document.getElementById("descriptionItem");
 
+        elementName.src += data[0].images.url
         elementPrice.innerHTML += formatRupiah(data[0].price, 'Rp ')
         elementName.innerHTML += data[0].name_item
         elementDes.innerHTML += data[0].Description
