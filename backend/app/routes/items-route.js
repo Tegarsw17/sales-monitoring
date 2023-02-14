@@ -17,7 +17,7 @@ router.patch('/api/item/:id',tokenjwt.verifyToken,otorisasi.authorization('admin
 //route delete item
 router.delete('/api/item/:id',tokenjwt.verifyToken,otorisasi.authorization('admin'), itemcontroller.deleteItem)
 //route search item
-router.post('/api/item/search',itemcontroller.searchItem)
+router.post('/api/itemsearch', itemcontroller.searchItem)
 
 module.exports = router
 

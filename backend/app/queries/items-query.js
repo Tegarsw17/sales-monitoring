@@ -69,14 +69,21 @@ const deleteItem = async (payload) => {
 }
 
 const searchItem = async (payload) => {
-    // Set req.query param to Search Builder constructor
-  
-    return Item.findAll({
-            // where: {
-            //     item_name: {
-            //         [Op.iLike]: `%${payload.item_name}%` 
-            //     }
-            // }
+
+    return  Item.findAll({
+            where: {
+                name_item: {
+                    [Op.iLike]: `%${payload.name_item}%` 
+                }
+            },
+            include: [
+                {
+                    model: Image_item,
+                },
+                {
+                    model: Category,
+                }
+            ],
         })
 }
 
