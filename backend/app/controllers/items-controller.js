@@ -101,7 +101,7 @@ class itemController {
 
             const data = await itemDecorator.itemDecoratorArray(searchResult)
             console.log(data)
-            return responseHendler.ok(res, message('get all item').success, data)
+            return responseHendler.ok(res, message('search item').success, data)
 
         }   
         catch(err) {
