@@ -1,4 +1,7 @@
-const { Item, Category } = require('../../db/models')
+const { Item, Category, Image_item } = require('../../db/models')
+const Sequelize = require('sequelize')
+const searchBuilder = require('sequelize-search-builder')
+const Op = Sequelize.Op
 
 
 
@@ -17,7 +20,14 @@ const createItem = async (payload, auth) => {
 //for all role
 const getItem = async () => {
     return Item.findAll({
-        include: Category,
+        include: [
+            {
+                model: Image_item,
+            },
+            {
+                model: Category,
+            }
+        ],
     })
 }
 
@@ -27,7 +37,14 @@ const getItemById = async (payload) => {
         where: { 
             id: payload.id,
         },
-        include: Category,
+        include: [
+            {
+                model: Image_item,
+            },
+            {
+                model: Category,
+            }
+        ],
     })
 }
 
@@ -42,6 +59,7 @@ const updateItem = async (payload1, payload2) => {
     })
 }
 
+//for admin role
 const deleteItem = async (payload) => {
     return Item.destroy({
         where: {
@@ -50,10 +68,30 @@ const deleteItem = async (payload) => {
     })
 }
 
+const searchItem = async (payload) => {
+
+    return  Item.findAll({
+            where: {
+                name_item: {
+                    [Op.iLike]: `%${payload.name_item}%` 
+                }
+            },
+            include: [
+                {
+                    model: Image_item,
+                },
+                {
+                    model: Category,
+                }
+            ],
+        })
+}
+
 module.exports = {
     createItem,
     getItem,
     getItemById,
     updateItem,
-    deleteItem
+    deleteItem,
+    searchItem,
 }

@@ -92,6 +92,25 @@ class itemController {
             return responseHendler.badRequest(res, message(key).errorMessage)
         }
     }
+
+    async searchItem(req, res) {
+        try {
+            const payload = req.body
+            const searchResult = await itemQueries.searchItem(payload)
+            if(!searchResult) { return responseHendler.notFound(res, message('item').notFoundResource)}
+
+            const data = await itemDecorator.itemDecoratorArray(searchResult)
+            console.log(data)
+            return responseHendler.ok(res, message('search item').success, data)
+
+        }   
+        catch(err) {
+            const key = err.message
+            console.log(err)
+            return responseHendler.badRequest(res, message(key).errorMessage)
+        }
+    }
+
 }
 
 module.exports = {
