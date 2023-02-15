@@ -1,0 +1,97 @@
+{
+    "error": false,
+    "type": "success",
+    "message": "get all item success",
+    "data": [
+    {
+    "id_item": 2,
+    "name_item": "Cat Nippon Pain",
+    "category_id": 1,
+    "category_name": "",
+    "Description": "cat kualitas unggul dengan berbagai macam warna asli jepang",
+    "price": 300000,
+    "quantity": 2
+    },
+    {
+    "id_item": 3,
+    "name_item": "Kuas 12\"",
+    "category_id": 2,
+    "category_name": "",
+    "Description": "kuas dengan bahan premium dapat bertahan lama",
+    "price": 50000,
+    "quantity": 10
+    },
+    {
+    "id_item": 4,
+    "name_item": "Kuas Besar",
+    "category_id": 2,
+    "category_name": "",
+    "Description": "kuas dengan bahan premium dapat bertahan lama",
+    "price": 25000,
+    "quantity": 10
+    },
+    {
+    "id_item": 5,
+    "name_item": "Roll Cat",
+    "category_id": 2,
+    "category_name": "",
+    "Description": "kuas dengan bahan premium dapat bertahan lama",
+    "price": 75000,
+    "quantity": 10
+    },
+    {
+    "id_item": 9,
+    "name_item": "Kuas modena 1/2\" 2\" 3\"",
+    "category_id": 2,
+    "category_name": "",
+    "Description": "kuas dengan serat premium dapat bertahan lama",
+    "price": 25000,
+    "quantity": 25
+    },
+    {
+    "id_item": 6,
+    "name_item": "sarung tangan",
+    "category_id": 2,
+    "category_name": "",
+    "Description": "kuas dengan bahan premium dapat bertahan lama",
+    "price": 45000,
+    "quantity": 10
+    },
+    {
+    "id_item": 7,
+    "name_item": "Obeng Plus",
+    "category_id": 2,
+    "category_name": "",
+    "Description": "kuas dengan bahan premium dapat bertahan lama",
+    "price": 120000,
+    "quantity": 10
+    },
+    {
+    "id_item": 8,
+    "name_item": "Obeng Minus",
+    "category_id": 2,
+    "category_name": "",
+    "Description": "kuas dengan bahan premium dapat bertahan lama",
+    "price": 150000,
+    "quantity": 10
+    },
+    {
+    "id_item": 9,
+    "name_item": "Kuas modena 1/2\" 2\" 3\"",
+    "category_id": 2,
+    "category_name": "",
+    "Description": "kuas dengan serat premium dapat bertahan lama",
+    "price": 25000,
+    "quantity": 25
+    },
+    {
+    "id_item": 7,
+    "name_item": "Obeng Plus",
+    "category_id": 2,
+    "category_name": "",
+    "Description": "kuas dengan bahan premium dapat bertahan lama",
+    "price": 120000,
+    "quantity": 10
+    }
+    ]
+    }

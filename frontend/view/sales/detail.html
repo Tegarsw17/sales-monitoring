@@ -10,14 +10,12 @@
   </div>
   <div class="flex justify-center items-center mt-3 mx-4 bg-[#fBfBfB] rounded h-48">
     <!-- <h1 class="">INI DETAIL</h1> -->
-    <img src="https://source.unsplash.com/random/200x150/?<%= param %>" alt="" />
+    <img id="imgItem" src="" alt="" />
   </div>
   <div class="flex flex-col justify-start mt-2 mx-5">
-    <p class="font-bold text-xl">Rp 250.000</p>
-    <p class="text-lg">Cat Tembok</p>
-    <p class="text-sm">
-      Cat warna putih dari merek nipon paint yang memiliki ukuran 5kg
-    </p>
+    <p class="font-bold text-xl" id="priceItem"></p>
+    <p class="text-lg" id="nameItem"></p>
+    <p class="text-sm" id="descriptionItem"></p>
   </div>
   <div class="flex justify-end mx-5 mt-5">
     <div id="decrement"
@@ -31,45 +29,29 @@
     </div>
   </div>
   <div class="flex justify-center mt-5">
-    <button class="bg-[#007FFF] text-white p-3 rounded w-80" onclick="isCartHaveId()">
+    <button class="bg-[#007FFF] text-white p-3 rounded w-80" onclick="addToCart()">
       Tambahkan ke Keranjang
     </button>
   </div>
   <%- include('./templates/navbar.html') -%>
-
     <script>
-      let incrementButton = document.getElementById("increment");
-      let decrementButton = document.getElementById("decrement");
-      let counter = document.getElementById("counter");
-      let count = 0;
+      const getData = async () => {
 
-      incrementButton.addEventListener("click", function () {
-        count++;
-        counter.textContent = count;
-        zeroCheck(count);
-      });
+        var dataItem = await axios.get("v1/api/item/<%= param %>")
+        var data = dataItem.data.data
+        const elementImg = document.getElementById("imgItem");
+        const elementPrice = document.getElementById("priceItem");
+        const elementName = document.getElementById("nameItem");
+        const elementDes = document.getElementById("descriptionItem");
 
-      decrementButton.addEventListener("click", () => {
-        count--;
-        counter.textContent = count;
-        zeroCheck(count);
-      });
-
-      function zeroCheck(count) {
-        if (count == 0) {
-          decrementButton.classList.add("invisible");
-        } else {
-          decrementButton.classList.remove("invisible");
-        }
+        elementImg.src += data[0]?.images?.url ? data[0].images.url : "/public/default.png"
+        elementPrice.innerHTML += formatRupiah(data[0].price, 'Rp ')
+        elementName.innerHTML += data[0].name_item
+        elementDes.innerHTML += data[0].Description
       }
+      getData()
 
-      function isCartHaveId() {
-        if (!sessionStorage.getItem("cartId")) {
-          alert("Yakin membuat cart baru?");
-          sessionStorage.setItem("cartId", "15");
-        }
-        let personName = sessionStorage.getItem("cartId");
-        document.getElementById("demo").innerHTML = personName;
-      }
     </script>
+
+    <script src="/public/js/detail.js"></script>
     <%- include('./templates/footer.html') -%>
