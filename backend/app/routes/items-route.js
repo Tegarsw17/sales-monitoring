@@ -11,7 +11,7 @@ router.post('/api/item',tokenjwt.verifyToken,otorisasi.authorization('admin'), i
 //route get all item
 router.get('/api/item',itemcontroller.getItem)
 //route get item by id
-router.post('/api/item/:id',itemcontroller.getItemById)
+router.get('/api/item/:id',itemcontroller.getItemById)
 //route update item
 router.patch('/api/item/:id',tokenjwt.verifyToken,otorisasi.authorization('admin'), itemcontroller.updateItem)
 //route delete item
