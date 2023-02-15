@@ -12,8 +12,10 @@ const MESSAGE = (key) => {
     const invalidCreateResource = `invalid create resource: ${key}`;
     const loginError = 'Failed to login';
     const unathorization = 'failed to authorize';
+    const unathentication = 'failed to authenticate';
     const serverError = 'Internal Server Error';
     const duplicateData = `${key} already registered in our database`;
+    const errorMessage = key
     
     return message = {
       success,
@@ -21,6 +23,7 @@ const MESSAGE = (key) => {
       updated,
       deleted,
       incompleteKeyOrValue,
+      unathentication,
       invalidEmailOrPassword,
       invalidType,
       invalidFormat,
@@ -30,6 +33,7 @@ const MESSAGE = (key) => {
       unathorization,
       serverError,
       duplicateData,
+      errorMessage,
     }
   }
     
