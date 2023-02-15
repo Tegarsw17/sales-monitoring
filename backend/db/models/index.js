@@ -34,5 +34,7 @@ module.exports = {
   User,
   Item,
   Category,
-  Image_item
+  Image_item,
+  Track,
+  Image_track
 }
