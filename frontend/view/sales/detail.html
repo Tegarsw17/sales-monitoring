@@ -8,9 +8,8 @@
       <i class="fa fa-arrow-left invisible"></i>
     </nav>
   </div>
-  <div class="flex justify-center items-center mt-3 mx-4 bg-[#fBfBfB] rounded h-48">
+  <div id="imgItem" class="flex justify-center items-center mt-3 mx-4 bg-[#fBfBfB] rounded h-48">
     <!-- <h1 class="">INI DETAIL</h1> -->
-    <img id="imgItem" src="" alt="" />
   </div>
   <div class="flex flex-col justify-start mt-2 mx-5">
     <p class="font-bold text-xl" id="priceItem"></p>
@@ -35,19 +34,21 @@
   </div>
   <%- include('./templates/navbar.html') -%>
     <script>
+
       const getData = async () => {
 
-        var dataItem = await axios.get("v1/api/item/<%= param %>")
+        var dataItem = await axios.post(`/v1/api/item/<%= param %>`)
         var data = dataItem.data.data
         const elementImg = document.getElementById("imgItem");
         const elementPrice = document.getElementById("priceItem");
         const elementName = document.getElementById("nameItem");
         const elementDes = document.getElementById("descriptionItem");
+        image = data.images[0]?.url ? data.images[0].url : "/public/default.png"
 
-        elementImg.src += data[0]?.images?.url ? data[0].images.url : "/public/default.png"
-        elementPrice.innerHTML += formatRupiah(data[0].price, 'Rp ')
-        elementName.innerHTML += data[0].name_item
-        elementDes.innerHTML += data[0].Description
+        elementImg.innerHTML += `<img src="${image}" width=150 height=150 alt="" />`
+        elementPrice.innerHTML += formatRupiah(data.price, 'Rp ')
+        elementName.innerHTML += data.name_item
+        elementDes.innerHTML += data.Description
       }
       getData()
 
