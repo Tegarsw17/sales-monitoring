@@ -8,7 +8,7 @@
       </p>
       <i class="fa fa-arrow-left invisible"></i>
     </nav>
-    <form class="flex justify-center items-center bg-[#fBfBfB]" action="/sales">
+    <form class="flex justify-center items-center bg-[#fBfBfB]" action="/">
       <input class="p-2.5 my-3 w-80 rounded-full bg-[#f4f4f4]" type="text" id="search" name="search"
         placeholder="Search" />
     </form>
@@ -21,16 +21,27 @@
   <%- include('./templates/navbar.html') -%>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-      const getData = async () => {
+      const getDataAll = async () => {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const search = urlParams.get('search')
 
-        var dataItem = await axios.get("v1/api/item")
+        // cek apakah tidak ada param
+        if (!queryString || !search) {
+          var dataItem = await axios.get("v1/api/item")
+        }
+        // cek ada param
+        if (queryString && search) {
+          var dataItem = await axios.post("v1/api/itemsearch", { name_item: search })
+        }
+
         var data = dataItem.data.data
         const element = document.getElementById("listCatalog");
         let listItem = ""
         for (let i = 0; i < Object.keys(data).length; i++) {
           listItem += `<a href="/catalog/${data[i].id_item}">
           <div class="card" style="width: 150px">
-            <img src="${data[i].images?.url ? data[i].images.url : "/public/default.png"}" loading="lazy" class="card-img-top" alt="/public/default.png" />
+            <img src="${data[i].images[0]?.url ? data[i].images[0].url : "/public/default.png"}" loading="lazy" class="card-img-top" alt="/public/default.png" />
             <div class="card-body">
               <h5 class="card-title">${limitChar(data[i].name_item, 22)}</h5>
               <p class="card-text font-bold text-lg">${formatRupiah(data[i].price, 'Rp ')}</p>
@@ -39,8 +50,7 @@
         </a>`;
         }
         element.innerHTML = listItem
-
       }
-      getData()
+      getDataAll()
     </script>
     <%- include('./templates/footer.html') -%>
