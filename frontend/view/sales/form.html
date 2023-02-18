@@ -41,22 +41,17 @@
         const success = (position) => {
           const latitudePost = position.coords.latitude;
           const longitudePost = position.coords.longitude;
-          addText.textContent = `latitude:${latitudePost} longitude:${longitudePost}`;
+          // addText.textContent = `latitude:${latitudePost} longitude:${longitudePost}`;
+          addText.textContent = `Lokasi berhasil ditemukan`;
           const getApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitudePost}&longitude=${longitudePost}&localityLanguage=en`;
 
           const dataLocation = axios.get(getApi).then(function (response) {
-            // console.log(response.data);
             kecamatan += response.data.locality
             kelurahan += "-"
             latitude += response.data.latitude
             longitude += response.data.longitude
             getLocation.disabled = true;
           })
-          // console.log(dataLocation)
-          // fetch(getApi)
-          //   .then((response) => response.json())
-          //   .then((data) => console.log(data));
-          //   .then((addtext.textContent = "lokasi sudah ditemukan"));
         };
         const err = (err) => {
           addtext.textContent = err.message;
@@ -72,7 +67,6 @@
         var file = document.querySelector("input[type=file]").files[0];
         var nonPreview = document.getElementById("data-foto");
         var reader = new FileReader();
-        // console.log(file)
 
         reader.onloadend = function () {
           preview.src = reader.result;
@@ -88,9 +82,40 @@
 
       function postLocation() {
         // hit data post tulisan
-        // hit data post gambar
-        var file = document.querySelector("input[type=file]").files[0];
-        console.log(file)
+        try {
+          // apakah data sudah diisi semua
+          // if (!token) throw err
+          const dataLocation = axios.post('v1/api/track', {
+            lock_latitude: latitude,
+            lock_longitude: longitude,
+            kecamatan: kecamatan,
+            kelurahan: kelurahan
+          }, {
+            headers: {
+              'authorization': token,
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          })
+          // hit data post gambar
+          var file = document.querySelector("input[type=file]").files[0];
+          console.log(file)
+          const imageLocation = axios.post('v1/api/imagetrack', { file: file }, {
+            headers: {
+              'authorization': token,
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+          successAlert(
+            `Laporan berhasil dibuat`,
+            "/"
+          )
+        } catch (error) {
+          errorAlert(
+            `Laporan gagal dibuat`,
+            window.location.href
+          )
+
+        }
       }
     </script>
     <%- include('./templates/footer.html') -%>

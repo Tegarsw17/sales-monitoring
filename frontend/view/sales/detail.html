@@ -37,7 +37,7 @@
 
       const getData = async () => {
 
-        var dataItem = await axios.post(`/v1/api/item/<%= param %>`)
+        var dataItem = await axios.get(`/v1/api/item/<%= param %>`)
         var data = dataItem.data.data
         const elementImg = document.getElementById("imgItem");
         const elementPrice = document.getElementById("priceItem");

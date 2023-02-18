@@ -31,7 +31,7 @@ const addToCart = () => {
       window.location.href
     )
   } else {
-    errorAlert(`jumlah belum diisi`)
+    errorAlert(`jumlah belum diisi`, window.location.href)
   }
 }
 
