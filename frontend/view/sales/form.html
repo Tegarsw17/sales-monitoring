@@ -23,7 +23,7 @@
       </button>
       <p id="findLocation" class="mt-1 text-lg text-[#0B6BCC]"></p>
 
-      <button onclick="getlocation()" class="bg-[#007FFF] text-white p-3 rounded w-24 mt-3 justify-self-end">
+      <button onclick="postLocation()" class="bg-[#007FFF] text-white p-3 rounded w-24 mt-3 justify-self-end">
         <i class="fa-solid fa-arrow-right-long"></i>
       </button>
     </div>
@@ -31,18 +31,31 @@
   <%- include('./templates/navbar.html') -%>
     <script>
       let getLocation = document.getElementById("getLocation");
-      let addtext = document.getElementById("findLocation");
+      let addText = document.getElementById("findLocation");
+      let kecamatan = ""
+      let kelurahan = ""
+      let latitude = ""
+      let longitude = ""
 
       getLocation.addEventListener("click", function () {
         const success = (position) => {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
-          addtext.textContent = `latitude:${latitude} longitude:${longitude}`;
-          const getApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+          const latitudePost = position.coords.latitude;
+          const longitudePost = position.coords.longitude;
+          addText.textContent = `latitude:${latitudePost} longitude:${longitudePost}`;
+          const getApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitudePost}&longitude=${longitudePost}&localityLanguage=en`;
 
-          fetch(getApi)
-            .then((response) => response.json())
-            .then((data) => console.log(data));
+          const dataLocation = axios.get(getApi).then(function (response) {
+            // console.log(response.data);
+            kecamatan += response.data.locality
+            kelurahan += "-"
+            latitude += response.data.latitude
+            longitude += response.data.longitude
+            getLocation.disabled = true;
+          })
+          // console.log(dataLocation)
+          // fetch(getApi)
+          //   .then((response) => response.json())
+          //   .then((data) => console.log(data));
           //   .then((addtext.textContent = "lokasi sudah ditemukan"));
         };
         const err = (err) => {
@@ -53,11 +66,13 @@
           timeout: 5000,
         });
       });
+
       function previewFile() {
         var preview = document.querySelector("img");
         var file = document.querySelector("input[type=file]").files[0];
         var nonPreview = document.getElementById("data-foto");
         var reader = new FileReader();
+        // console.log(file)
 
         reader.onloadend = function () {
           preview.src = reader.result;
@@ -69,6 +84,13 @@
         } else {
           preview.src = "";
         }
+      }
+
+      function postLocation() {
+        // hit data post tulisan
+        // hit data post gambar
+        var file = document.querySelector("input[type=file]").files[0];
+        console.log(file)
       }
     </script>
     <%- include('./templates/footer.html') -%>

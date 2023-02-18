@@ -9,8 +9,8 @@ const config = {
 const verifyToken = async () => {
   try {
     if (!token) throw err
-    // const response = await axios.get(`${BASE_URL}/auth/verify`, config)
-    // console.log(response);
+    // const response = await axios.get(`/auth/verify`, config)
+    // console.log(response)
     return true
   } catch (err) {
     return false
@@ -30,7 +30,7 @@ const verifyPage = async () => {
     }
   }
   if (!token && location.pathname != '/login') {
-    var element = document.getElementById('list-catalog')
+    var element = document.getElementById('listCatalog')
     element.classList.add('invisible')
     warningAlert('Silahkan login terlebih dahulu!', '/login')
     return false
