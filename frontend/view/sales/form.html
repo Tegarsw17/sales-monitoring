@@ -33,7 +33,7 @@
       let getLocation = document.getElementById("getLocation");
       let addText = document.getElementById("findLocation");
       let kecamatan = ""
-      let kelurahan = ""
+      // let kelurahan = ""
       let latitude = ""
       let longitude = ""
 
@@ -47,7 +47,7 @@
 
           const dataLocation = axios.get(getApi).then(function (response) {
             kecamatan += response.data.locality
-            kelurahan += "-"
+            // kelurahan += "-"
             latitude += response.data.latitude
             longitude += response.data.longitude
             getLocation.disabled = true;
@@ -89,7 +89,7 @@
             lock_latitude: latitude,
             lock_longitude: longitude,
             kecamatan: kecamatan,
-            kelurahan: kelurahan
+            // kelurahan: kelurahan
           }, {
             headers: {
               'authorization': token,
