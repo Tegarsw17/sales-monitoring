@@ -11,6 +11,10 @@ class imageTrackController {
     async uploadImage(req, res) {
         try {
             const id = req.params.id
+
+            const auth = req.userId
+            const findTrack = await trackQueries.findOneTrack('open', auth)
+            if(!findTrack) { return responseHendler.notFound(res, message('track').notFoundResource)}
             
             //deploy storage dicloudinary
             await uploadCloudinary(req, res)
@@ -18,15 +22,13 @@ class imageTrackController {
             if(req.files === undefined) { return responseHendler.badRequest(res, message('images').incompleteKeyOrValue)}
 
             //find track with status open and id user is req.userId
-            const auth = req.userId
-            const findTrack = await trackQueries.findOneTrack('open', auth)
-            if(!findTrack) { return responseHendler.notFound(res, message('track').notFoundResource)}
+            
 
             //use to bulk upload
             console.log(req.files)
             let images = req.files.map((item) => {
                 const image = {}
-                image.track_id = findTrack.id
+                image.tracks_id = findTrack.id
                 image.url = item.path
                 
                 return image
