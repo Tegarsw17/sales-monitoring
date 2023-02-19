@@ -16,6 +16,10 @@ track.init(
       allowNull: true,
       field: 'user_id'
     },
+    track_status: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     lock_latitude: {
       type: DataTypes.STRING,
       allowNull: false
@@ -28,11 +32,6 @@ track.init(
         type: DataTypes.STRING,
         allowNull: false
     },
-    kelurahan: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    
   },
   {
     sequelize: sequelize,

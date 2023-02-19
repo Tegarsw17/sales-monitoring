@@ -18,6 +18,10 @@ module.exports = {
           as: "user_id"
         }
       },
+      track_status: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       lock_latitude: {
         type: Sequelize.STRING,
         allowNull: false
@@ -27,10 +31,6 @@ module.exports = {
         allowNull: false
       },
       kecamatan: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      kelurahan: {
         type: Sequelize.STRING,
         allowNull: false
       },
